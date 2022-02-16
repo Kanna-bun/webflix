@@ -5,7 +5,7 @@
 
     <ul>
         @foreach ($team as $user)
-            <li><a href="/a-propos/{{ $user}}">{{$user}}></a></li>
+            <li><a href="/a-propos/{{ $user }}">{{ $user }}</a></li>
         @endforeach
     </ul>
 @endsection
