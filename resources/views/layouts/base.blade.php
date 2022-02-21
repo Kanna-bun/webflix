@@ -20,29 +20,35 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">Webflix</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="/">Webflix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="/">Accueil</a>
-              <a class="nav-link" href="/categories">Catégories</a>
-              <a class="nav-link" href="/a-propos">A propos</a>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/">Accueil</a>
+                     <a class="nav-link" href="/categories">Catégories</a>
+                    <a class="nav-link" href="/a-propos">A propos</a>
+                </div>
             </div>
-          </div>
         </div>
-      </nav>
+    </nav>
       
-      <div class="container py-5 mt-5">
-        @yield('content')
-      </div>
+    <div class="container py-5 mt-5">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
 
-      <footer>
-          <div class="container">
+        @yield('content')
+    </div>
+
+    <footer>
+        <div class="container">
             <p class="text-center">Copyright &copy; {{ date('Y') }} - Webflix</p>
-          </div>
-      </footer>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>

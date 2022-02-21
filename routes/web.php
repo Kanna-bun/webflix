@@ -30,29 +30,10 @@ Route::get('/a-propos', [AboutController::class, 'index']);
 Route::get('/a-propos/{user}', [AboutController::class, 'show']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
-
 // Affiche le formulaire
-Route::get('/categories/creer', function () {
-    return view('categories.create');
-});
-
+Route::get('/categories/creer', [CategoryController::class, 'create']);
 // Traite le formulaire
-Route::post('/categories/creer', function () {
-    // Vérifier les erreurs
-    request()->validate([
-        'name' => 'required|min:3|max:10',
-        // 'email' => 'required|email',
-    ]);
-
-    // dump(request('name'));
-
-    // S'il n'y a pas d'erreur, on crée la catégorie
-    Category::create([
-        'name' => request('name'),
-    ]);
-
-    return redirect('/exercice/categories');
-});
+Route::post('/categories/creer', [CategoryController::class, 'store']);
 
 Route::get('/exercice/categories', function () {
     return view('exercice.categories', [
