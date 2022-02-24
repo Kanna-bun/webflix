@@ -59,9 +59,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return view('categories.show', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -70,9 +72,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -82,9 +86,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        // Vérifier les erreurs
+        request()->validate([
+            'name' => 'required|min:3',
+        ]);
+
+        // On modifie la catégorie dans la BDD
+        $category->update([
+            'name' => request('name'),
+        ]);
+
+        return redirect('/categories')->with('status', 'La catégorie '.$category->name.' a été modifiée.');
     }
 
     /**
@@ -93,8 +107,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect('/categories')->with('status', 'La catégorie '.$category->name.' a été supprimée.');
     }
 }
